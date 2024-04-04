@@ -23,6 +23,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="dataUtilities.py" />
+    <Compile Include="filesUtilitis.py" />
     <Compile Include="PythonServer.py" />
   </ItemGroup>
   <ItemGroup>

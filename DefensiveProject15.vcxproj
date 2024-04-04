@@ -105,12 +105,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\unite\Downloads\boost_1_84_0\boost_1_84_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\unite\Downloads\cryptopp890;C:\Users\unite\Downloads\boost_1_84_0\boost_1_84_0;%(AdditionalIncludeDirectories) /   /x64/Debug/</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\unite\Downloads\boost_1_84_0\boost_1_84_0\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\unite\Downloads\boost_1_84_0\boost_1_84_0\stage\lib;C:\Users\unite\Downloads\boost_1_84_0\boost_1_84_0\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\Users\unite\Downloads\cryptopp890\x64\Output\Debug\cryptlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -130,7 +133,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DefensiveProject15.cpp" />
+    <ClCompile Include="AESWrapper.cpp" />
+    <ClCompile Include="Base64Wrapper.cpp" />
+    <ClCompile Include="ClientInfo.cpp" />
+    <ClCompile Include="ClientMain.cpp" />
+    <ClCompile Include="ConfigData.cpp" />
+    <ClCompile Include="InitState.cpp" />
+    <ClCompile Include="InitState.hpp" />
+    <ClCompile Include="MessageHandler.cpp" />
+    <ClCompile Include="RegisterMessageState.cpp" />
+    <ClCompile Include="RSAWrapper.cpp" />
+    <ClCompile Include="SendPublicKeyMessageState.cpp" />
+    <ClCompile Include="State.cpp" />
+    <ClCompile Include="WinSockSingleton.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AESWrapper.h" />
+    <ClInclude Include="Base64Wrapper.h" />
+    <ClInclude Include="ClientInfo.hpp" />
+    <ClInclude Include="ConfigData.hpp" />
+    <ClInclude Include="MessageHandler.hpp" />
+    <ClInclude Include="RegisterMessageState.hpp" />
+    <ClInclude Include="RSAWrapper.h" />
+    <ClInclude Include="SendPublicKeyMessageState.hpp" />
+    <ClInclude Include="State.hpp" />
+    <ClInclude Include="WinSockSingleton.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
