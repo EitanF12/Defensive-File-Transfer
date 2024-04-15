@@ -17,7 +17,7 @@ std::string RegisterMessageState::createMessage(const std::string& payload) {
     std::vector<unsigned char> buffer;
 
     // Helper lambda to append data in little-endian order
-    
+    /*
     auto appendLittleEndian = [&buffer](auto value, size_t numBytes) {
         for (size_t i = 0; i < numBytes; i++) {
             if (i < sizeof(value)) {
@@ -28,21 +28,22 @@ std::string RegisterMessageState::createMessage(const std::string& payload) {
             }
         }
     };
-    
-    // Append fields in little-endian order
-   /*
-    appendLittleEndian(buffer,clientIDHigh,8);
-    appendLittleEndian(buffer,clientIDLow,8);
-    appendLittleEndian(buffer,version,1);
-    appendLittleEndian(buffer,messageCode,2);
-    appendLittleEndian(buffer,payloadSize,4);
     */
+    // Append fields in little-endian order
+   
+    appendLE2Buffer(buffer,clientIDHigh,8);
+    appendLE2Buffer(buffer,clientIDLow,8);
+    //std::vector<unsigned char> buffer = getClientID();
+    appendLE2Buffer(buffer,version,1);
+    appendLE2Buffer(buffer,messageCode,2);
+    appendLE2Buffer(buffer,payloadSize,4);
+    /*
     appendLittleEndian(clientIDHigh, 8);
     appendLittleEndian(clientIDLow, 8);
     appendLittleEndian(version, 1);
     appendLittleEndian(messageCode, 2);
     appendLittleEndian(payloadSize, 4);
-
+    */
     // Append payload
     buffer.insert(buffer.end(), payload.begin(), payload.end());
     std::string res = std::string(buffer.begin(), buffer.end());

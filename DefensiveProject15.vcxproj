@@ -138,10 +138,12 @@
     <ClCompile Include="ClientInfo.cpp" />
     <ClCompile Include="ClientMain.cpp" />
     <ClCompile Include="ConfigData.cpp" />
+    <ClCompile Include="EncryptedFileSender.cpp" />
     <ClCompile Include="InitState.cpp" />
     <ClCompile Include="InitState.hpp" />
     <ClCompile Include="MessageHandler.cpp" />
     <ClCompile Include="RegisterMessageState.cpp" />
+    <ClCompile Include="RSAEncryptorDecryptor.cpp" />
     <ClCompile Include="RSAWrapper.cpp" />
     <ClCompile Include="SendPublicKeyMessageState.cpp" />
     <ClCompile Include="State.cpp" />
@@ -152,8 +154,10 @@
     <ClInclude Include="Base64Wrapper.h" />
     <ClInclude Include="ClientInfo.hpp" />
     <ClInclude Include="ConfigData.hpp" />
+    <ClInclude Include="EncryptedFileSender.hpp" />
     <ClInclude Include="MessageHandler.hpp" />
     <ClInclude Include="RegisterMessageState.hpp" />
+    <ClInclude Include="RSAEncryptorDecryptor.hpp" />
     <ClInclude Include="RSAWrapper.h" />
     <ClInclude Include="SendPublicKeyMessageState.hpp" />
     <ClInclude Include="State.hpp" />

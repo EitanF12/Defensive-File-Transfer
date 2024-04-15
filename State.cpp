@@ -3,11 +3,11 @@
 
 #include <winsock2.h>
 #include <ws2tcpip.h>
-
+#include <fstream>
 #include <iostream>
 #include "ClientInfo.hpp"
 #include "ConfigData.hpp"
-
+#include <iomanip>
 #include "WinSockSingleton.hpp"
 
 #pragma comment(lib, "Ws2_32.lib")
@@ -37,6 +37,16 @@ unsigned long long State::getClientIDHigh() const {
 
 unsigned long long State::getClientIDLow() const {
     return clientIDLow;
+}
+
+
+void State::setClientID(const std::vector<uint8_t>& payload) {
+
+    _clientId = payload;
+}
+//getter for client id
+const std::vector<uint8_t>& State::getClientID() const {
+	return _clientId;
 }
 
 unsigned char State::getVersion() const {
@@ -121,7 +131,7 @@ int State::getAnswer(char* buffer, unsigned int* buffer_real_size)
 }
 
 
-void State::appendLE2Buffer(std::vector<unsigned char>& buffer, unsigned char value, size_t numBytes) {
+void State::appendLE2Buffer(std::vector<unsigned char>& buffer, unsigned int value, size_t numBytes) {
     for (size_t i = 0; i < numBytes; i++) {
         if (i < sizeof(value)) {
             buffer.push_back((value >> (i * 8)) & 0xFF);
@@ -130,6 +140,44 @@ void State::appendLE2Buffer(std::vector<unsigned char>& buffer, unsigned char va
             buffer.push_back(0); // Append zeros if beyond the size of value
         }
     }
+}
+
+
+void State::appendStringLE2Buffer(std::vector<unsigned char>& buffer, const std::string& value, size_t numBytes) {
+    size_t strLength = value.length();
+    for (size_t i = 0; i < numBytes; i++) {
+        if (i < strLength) {
+            buffer.push_back(value[i]);
+        }
+        else if (i == strLength) {
+            buffer.push_back(0); // Append null terminator if reached end of the string
+        }
+        else {
+            buffer.push_back(0); // Append zeros if beyond the size of the string
+        }
+    }
+}
+
+
+void State::hexify(const unsigned char* buffer, unsigned int length)
+{
+    std::ios::fmtflags f(std::cout.flags());
+    std::cout << std::hex;
+    for (size_t i = 0; i < length; i++)
+        std::cout << std::setfill('0') << std::setw(2) << (0xFF & buffer[i]) << (((i + 1) % 16 == 0) ? "\n" : " ");
+    std::cout << std::endl;
+    std::cout.flags(f);
+}
+
+
+void State::hexify(const unsigned char* buffer, unsigned int length, std::ofstream& outputFile)
+{
+    std::ios::fmtflags f(outputFile.flags());
+    outputFile << std::hex;
+    for (size_t i = 0; i < length; i++)
+        outputFile << std::setfill('0') << std::setw(2) << (0xFF & buffer[i]) << (((i + 1) % 16 == 0) ? "\n" : " ");
+    outputFile << std::endl;
+    outputFile.flags(f);
 }
 
 /*
