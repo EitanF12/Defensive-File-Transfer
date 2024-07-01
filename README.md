@@ -1,10 +1,12 @@
 # Defensive File Transfer System
+```
 A file transfer system using a binary protocol, featuring a Python server and C++ clients.
 Supports multiple parallel connections, each with unique encryption keys, and includes checksum verification for data integrity.
 
 The system utilizes Winsock for communication within a singleton object to manage connections efficiently.
-Additionally, the factory design pattern is employed to simplify the main function and ensure that each instruction behaves differently while using the same function names.
-
+Additionally, the factory design pattern is employed to simplify the main function
+And ensure that each instruction behaves differently while using the same function names.
+```
 # Features
 * Supports file transfer in any format up to 512 MB
 * Binary protocol for efficient communication
